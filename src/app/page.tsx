@@ -60,10 +60,10 @@ export default function Home() {
 
   // Gallery grid datasets
   const galleryPhotos = [
-    { id: "g1", category: "STUDIO", title: "Nights in Eastlands Studio", img: "/assets/rockstar-action.jpg" },
-    { id: "g2", category: "LIFESTREET", title: "Cyber-Dread Aesthetics", img: "/assets/rasta-action.jpg" },
-    { id: "g3", category: "CONCERT", title: "Nairobi Emo Fest Headliner", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect width='100%25' height='100%25' fill='%23181818'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' fill='%23C1121F' font-size='12'%3ELIVE NOISE%3C/text%3E%3C/svg%3E" },
-    { id: "g4", category: "BACKSTAGE", title: "Pre-Show Rituals", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='100%25' height='100%25' fill='%23181818'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' fill='%23A5A5A5' font-size='12'%3EBACKSTAGE MEDITATION%3C/text%3E%3C/svg%3E" },
+    { id: "g1", category: "STUDIO", title: "Nights in Eastlands Studio", img: "/assets/rockstar-action.webp" },
+    { id: "g2", category: "LIFESTREET", title: "Cyber-Dread Aesthetics", img: "/assets/rasta-action.webp" },
+    { id: "g3", category: "CONCERT", title: "Nairobi Emo Fest Headliner", img: "/assets/rockstar-bomber.webp" },
+    { id: "g4", category: "BACKSTAGE", title: "Pre-Show Rituals", img: "/assets/pre-show-ritual.webp" },
   ];
 
   return (
@@ -78,14 +78,14 @@ export default function Home() {
           {/* Global brand logo background image watermark */}
           <div 
             className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08] pointer-events-none mix-blend-luminosity filter saturate-[0.1] contrast-[1.15] z-0"
-            style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
+            style={{ backgroundImage: `url('/assets/hero-bg.webp')` }}
           />
 
           {/* Floating Contact CTA */}
-          <div className="fixed bottom-24 right-6 z-[250] flex items-center space-x-3 select-none">
+          <div className="fixed bottom-24 right-6 z-250 flex items-center space-x-3 select-none">
             <a 
               href="tel:+254741312224" 
-              className="frosted-glass flex items-center justify-center w-12 h-12 text-gold-primary hover:text-white-editorial hover:bg-gold-primary hover:text-background-dark border border-gold-primary/30 transition-all duration-300 shadow-xl cursor-pointer"
+              className="frosted-glass flex items-center justify-center w-12 h-12 text-gold-primary hover:bg-gold-primary hover:text-background-dark border border-gold-primary/30 transition-all duration-300 shadow-xl cursor-pointer"
               title="Call Management"
             >
               <Phone className="w-4 h-4" />
@@ -235,7 +235,7 @@ export default function Home() {
                   onClick={() => setSelectedImage(photo.img)}
                   className="frosted-card group overflow-hidden cursor-pointer flex flex-col justify-between"
                 >
-                  <div className="relative aspect-[3/4] bg-surface-dark overflow-hidden">
+                  <div className="relative aspect-3/4 bg-surface-dark overflow-hidden">
                     <img
                       src={photo.img}
                       alt={photo.title}
@@ -396,7 +396,7 @@ export default function Home() {
           {/* Video Lightbox Player Overlay */}
           <AnimatePresence>
             {selectedVideo && (
-              <div className="fixed inset-0 z-[300] bg-background-dark/95 backdrop-blur-md flex items-center justify-center p-4 select-none">
+              <div className="fixed inset-0 z-300 bg-background-dark/95 backdrop-blur-md flex items-center justify-center p-4 select-none">
                 <button
                   onClick={() => setSelectedVideo(null)}
                   className="absolute top-4 right-4 z-10 px-4 py-2 border border-border-dark hover:border-white-editorial text-[10px] font-mono tracking-widest text-muted-text hover:text-white-editorial transition-all"
@@ -420,7 +420,7 @@ export default function Home() {
           {/* Image Lightbox Overlay */}
           <AnimatePresence>
             {selectedImage && (
-              <div className="fixed inset-0 z-[300] bg-background-dark/95 backdrop-blur-md flex items-center justify-center p-4 select-none" onClick={() => setSelectedImage(null)}>
+              <div className="fixed inset-0 z-300 bg-background-dark/95 backdrop-blur-md flex items-center justify-center p-4 select-none" onClick={() => setSelectedImage(null)}>
                 <button
                   onClick={() => setSelectedImage(null)}
                   className="absolute top-4 right-4 z-10 px-4 py-2 border border-border-dark text-[10px] font-mono tracking-widest text-muted-text hover:text-white-editorial transition-all"

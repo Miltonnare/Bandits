@@ -19,7 +19,7 @@ export default function BanditsCard() {
   const bandits: Bandit[] = [
     {
       name: "ROCKSTAR BANDIT",
-      avatar: "/assets/rockstar-bomber.jpg",
+      avatar: "/assets/rockstar-profile.webp",
       role: "Producer / Creative Director / Strategist",
       quote: `"Silence is the canvas. Sound is the paint."`,
       song: "Silence Has a Sound",
@@ -30,7 +30,7 @@ export default function BanditsCard() {
     },
     {
       name: "RASTA BANDIT",
-      avatar: "/assets/rasta-profile.jpg",
+      avatar: "/assets/rasta-profile.webp",
       role: "Lyricist / Vocalist / Emotional Voice",
       quote: `"We speak for the ones who have forgotten how to scream."`,
       song: "Rockstar Chronicles",
@@ -82,11 +82,11 @@ export default function BanditsCard() {
           transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           transition: isHovered ? "none" : "transform 0.5s ease-out",
         }}
-        className="w-full bg-secondary-dark/60 border border-border-dark relative overflow-hidden group shadow-2xl p-6 md:p-8 flex flex-col justify-between min-h-[550px] cursor-pointer"
+        className="w-full bg-secondary-dark/60 border border-border-dark relative overflow-hidden group shadow-2xl p-6 md:p-8 flex flex-col justify-between min-h-137.5 cursor-pointer"
       >
         {/* Glowing border effects */}
-        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-gold-primary/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-        <div className="absolute inset-y-0 right-0 w-[1px] bg-gradient-to-b from-transparent via-accent-red/30 to-transparent scale-y-0 group-hover:scale-y-100 transition-transform duration-700 delay-100" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-gold-primary/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+        <div className="absolute inset-y-0 right-0 w-px bg-linear-to-b from-transparent via-accent-red/30 to-transparent scale-y-0 group-hover:scale-y-100 transition-transform duration-700 delay-100" />
 
         {/* Backdrop visual elements */}
         <div className="absolute top-10 right-10 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
@@ -105,13 +105,13 @@ export default function BanditsCard() {
           </div>
 
           {/* Editorial Portrait */}
-          <div className="w-full h-56 bg-surface-dark border border-border-dark/60 overflow-hidden relative group-hover:border-gold-primary/30 transition-colors">
+          <div className="w-full h-80 bg-secondary-dark/80 border border-border-dark/60 overflow-hidden relative group-hover:border-gold-primary/30 transition-colors">
             <img
               src={bandit.avatar}
               alt={bandit.name}
-              className="w-full h-full object-cover grayscale contrast-[1.1] brightness-[0.8] group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
+              className="w-full h-full object-contain grayscale contrast-[1.1] brightness-[0.8] group-hover:grayscale-0 group-hover:scale-103 group-hover:brightness-100 transition-all duration-700 ease-out"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-secondary-dark via-transparent to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-linear-to-t from-secondary-dark/60 via-transparent to-transparent opacity-60 pointer-events-none" />
           </div>
 
           {/* Member Name */}

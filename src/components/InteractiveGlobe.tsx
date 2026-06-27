@@ -283,7 +283,7 @@ export default function InteractiveGlobe() {
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       {/* Globe Canvas Container */}
-      <div className="relative w-full h-[350px] md:h-[450px] flex items-center justify-center bg-secondary-dark/40 border border-border-dark/30 rounded-none overflow-hidden group">
+      <div className="relative w-full h-87.5 md:h-112.5 flex items-center justify-center bg-secondary-dark/40 border border-border-dark/30 rounded-none overflow-hidden group">
         <div className="absolute top-4 left-4 flex items-center space-x-2">
           <Globe className="w-4 h-4 text-gold-primary animate-spin-slow" />
           <span className="text-[10px] tracking-widest font-mono text-muted-text uppercase">

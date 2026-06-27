@@ -147,7 +147,7 @@ export default function Discography() {
             }}
           >
             {/* Immersive Rotating Vinyl Image */}
-            <div className="relative w-36 h-36 flex-shrink-0 overflow-hidden bg-secondary-dark/40 flex items-center justify-center border border-border-dark/40">
+            <div className="relative w-36 h-36 shrink-0 overflow-hidden bg-secondary-dark/40 flex items-center justify-center border border-border-dark/40">
               <img
                 src={release.cover}
                 alt={release.title}
@@ -238,7 +238,7 @@ export default function Discography() {
           <div className="bg-secondary-dark border border-border-dark w-full max-w-3xl flex flex-col h-[85vh] relative">
             
             {/* Modal Header */}
-            <div className="p-6 border-b border-border-dark flex items-center justify-between flex-shrink-0">
+            <div className="p-6 border-b border-border-dark flex items-center justify-between shrink-0">
               <div>
                 <span className="text-[10px] font-mono text-gold-primary tracking-widest uppercase">
                   {activeRelease.type} INTERACTIVE CARD
@@ -256,7 +256,7 @@ export default function Discography() {
             </div>
 
             {/* Toggle tabs */}
-            <div className="flex border-b border-border-dark flex-shrink-0">
+            <div className="flex border-b border-border-dark shrink-0">
               <button
                 onClick={() => setActiveTab("lyrics")}
                 className={`flex-1 py-4 font-mono text-[10px] tracking-widest transition-all flex items-center justify-center space-x-2 ${

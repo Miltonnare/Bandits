@@ -98,7 +98,7 @@ export default function BookingForm() {
       <div className="absolute top-0 right-0 w-32 h-32 bg-gold-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       {isSuccess ? (
-        <div className="min-h-[400px] flex flex-col items-center justify-center text-center space-y-6">
+        <div className="min-h-100 flex flex-col items-center justify-center text-center space-y-6">
           <div className="w-16 h-16 rounded-full border-2 border-gold-primary flex items-center justify-center text-gold-primary bg-gold-primary/10 animate-pulse">
             <Check className="w-8 h-8" />
           </div>

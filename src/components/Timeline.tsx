@@ -112,7 +112,7 @@ export default function Timeline() {
       </div>
 
       {/* Horizontal Container */}
-      <div className="relative flex items-center h-[450px]">
+      <div className="relative flex items-center h-112.5">
         <div
           ref={containerRef}
           className="flex space-x-12 px-[5%] will-change-transform"
@@ -120,7 +120,7 @@ export default function Timeline() {
           {timelineEvents.map((event, index) => (
             <div
               key={event.title}
-              className="w-[280px] md:w-[350px] bg-secondary-dark/60 border border-border-dark p-8 flex flex-col justify-between h-[360px] relative flex-shrink-0"
+              className="w-70 md:w-87.5 bg-secondary-dark/60 border border-border-dark p-8 flex flex-col justify-between h-90 relative shrink-0"
             >
               {/* Year marker */}
               <div className="flex justify-between items-center">
@@ -133,8 +133,8 @@ export default function Timeline() {
               </div>
 
               {/* Central connection line dots decoration */}
-              <div className="absolute left-0 top-[40%] right-0 h-[1px] bg-border-dark/40 pointer-events-none">
-                <div className="absolute -left-[5px] -top-1 w-2.5 h-2.5 rounded-full border border-gold-primary bg-background-dark" />
+              <div className="absolute left-0 top-[40%] right-0 h-px bg-border-dark/40 pointer-events-none">
+                <div className="absolute -left-1.25 -top-1 w-2.5 h-2.5 rounded-full border border-gold-primary bg-background-dark" />
               </div>
 
               {/* Title & Description */}

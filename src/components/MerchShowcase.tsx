@@ -225,7 +225,7 @@ export default function MerchShowcase() {
                 <img
                   src={selectedItem.image}
                   alt={selectedItem.name}
-                  className="w-full h-full object-contain max-h-[300px] md:max-h-full"
+                  className="w-full h-full object-contain max-h-75 md:max-h-full"
                 />
               </div>
 
@@ -342,7 +342,7 @@ export default function MerchShowcase() {
                           key={`${cartItem.item.id}-${cartItem.size || ""}`}
                           className="flex items-center space-x-4 border-b border-border-dark/30 pb-4"
                         >
-                          <div className="w-16 h-16 bg-surface-dark border border-border-dark/40 flex-shrink-0 p-2">
+                          <div className="w-16 h-16 bg-surface-dark border border-border-dark/40 shrink-0 p-2">
                             <img
                               src={cartItem.item.image}
                               alt={cartItem.item.name}

@@ -298,7 +298,7 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
   }, [isPlaying]);
 
   return (
-    <div className="fixed bottom-6 left-6 z-[200] max-w-sm select-none">
+    <div className="fixed bottom-6 left-6 z-200 max-w-sm select-none">
       <div className={`frosted-glass flex flex-col shadow-2xl transition-all duration-500 ease-in-out overflow-hidden border border-border-dark ${
         isExpanded ? "w-80 p-5 space-y-4" : "w-14 h-14 items-center justify-center p-0 rounded-full cursor-pointer"
       }`}
@@ -339,7 +339,7 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
 
             {/* Track Info Grid */}
             <div className="flex items-center space-x-3.5 relative">
-              <div className="w-12 h-12 bg-surface-dark border border-border-dark/60 flex items-center justify-center text-gold-primary relative flex-shrink-0">
+              <div className="w-12 h-12 bg-surface-dark border border-border-dark/60 flex items-center justify-center text-gold-primary relative shrink-0">
                 <Disc className={`w-6 h-6 ${isPlaying ? "animate-spin-slow" : ""}`} />
               </div>
               <div className="flex-1 min-w-0">
@@ -354,7 +354,7 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
 
             {/* Playback Controls & Waveform Visualizer */}
             <div className="flex items-center justify-between space-x-4">
-              <div className="flex items-center space-x-1.5 flex-shrink-0">
+              <div className="flex items-center space-x-1.5 shrink-0">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -433,7 +433,7 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
 
             {/* Playlist dropdown list */}
             {showPlaylist && (
-              <div className="border border-border-dark bg-secondary-dark p-2 text-xs font-mono space-y-1.5 transition-all max-h-[140px] overflow-y-auto">
+              <div className="border border-border-dark bg-secondary-dark p-2 text-xs font-mono space-y-1.5 transition-all max-h-35 overflow-y-auto">
                 <span className="text-[9px] text-muted-text tracking-widest block uppercase px-2 mb-1">
                   CHOOSE FREQUENCY
                 </span>

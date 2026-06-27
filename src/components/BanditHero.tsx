@@ -112,12 +112,12 @@ export default function BanditHero() {
         </video>
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-10 opacity-50"
-          style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
+          style={{ backgroundImage: `url('/assets/hero-bg.webp')` }}
         />
       </div>
       
       {/* Ambient gradient sweeps */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/80 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-background-dark via-background-dark/80 to-transparent pointer-events-none" />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[35vw] bg-accent-red/5 rounded-full blur-[140px] pointer-events-none animated-mesh-1" />
       <div className="absolute bottom-10 right-10 w-[40vw] h-[25vw] bg-gold-primary/5 rounded-full blur-[120px] pointer-events-none animated-mesh-2" />
 
@@ -125,7 +125,7 @@ export default function BanditHero() {
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />
 
       {/* Header / Brand Logo */}
-      <header className="fixed top-0 left-0 right-0 z-[150] w-full border-b border-gold-primary/20 backdrop-blur-md bg-background-dark/75 py-5 select-none">
+      <header className="fixed top-0 left-0 right-0 z-150 w-full border-b border-gold-primary/20 backdrop-blur-md bg-background-dark/75 py-5 select-none">
         <div className="max-w-[90%] mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => scrollToSection("hero")}>
             <div className="relative">
@@ -144,21 +144,21 @@ export default function BanditHero() {
           <nav className="flex items-center space-x-4 md:space-x-8 text-[10px] font-mono tracking-[0.2em] md:tracking-[0.25em]">
             <button onClick={() => scrollToSection("about")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group hidden md:inline-block">
               ABOUT
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <span className="absolute bottom-0 left-0 w-full h-px bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </button>
             <button onClick={() => scrollToSection("timeline")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group hidden md:inline-block">
               CHRONICLES
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <span className="absolute bottom-0 left-0 w-full h-px bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </button>
             <button onClick={() => scrollToSection("bandits")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group hidden md:inline-block">
               MEMBERS
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <span className="absolute bottom-0 left-0 w-full h-px bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </button>
             <button onClick={() => scrollToSection("discography")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group">
               DISCOGRAPHY
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <span className="absolute bottom-0 left-0 w-full h-px bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </button>
-            <button onClick={() => scrollToSection("booking")} className="text-gold-primary hover:text-white-editorial hover:text-glow transition-all border border-gold-primary/30 px-3 py-1 bg-gold-primary/5 hover:bg-gold-primary hover:text-background-dark cursor-pointer font-medium tracking-widest text-[9px]">
+            <button onClick={() => scrollToSection("booking")} className="text-gold-primary hover:text-glow transition-all border border-gold-primary/30 px-3 py-1 bg-gold-primary/5 hover:bg-gold-primary hover:text-background-dark cursor-pointer font-medium tracking-widest text-[9px]">
               BOOKINGS
             </button>
           </nav>

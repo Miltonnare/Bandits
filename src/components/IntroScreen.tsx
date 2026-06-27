@@ -38,7 +38,7 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
       <motion.div
         initial={{ opacity: 1 }}
         exit={{ opacity: 0, y: -40, transition: { duration: 1, ease: [0.76, 0, 0.24, 1] } }}
-        className="fixed inset-0 z-[9999] flex flex-col items-center justify-between bg-background-dark p-8 md:p-12 overflow-hidden select-none"
+        className="fixed inset-0 z-9999 flex flex-col items-center justify-between bg-background-dark p-8 md:p-12 overflow-hidden select-none"
       >
         {/* Cinematic brand logo background image for intro screen */}
         <motion.div 
@@ -46,11 +46,11 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
           animate={{ scale: 1.03, opacity: 0.16 }}
           transition={{ duration: 3, ease: "easeOut" }}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none mix-blend-luminosity filter saturate-[0.1] contrast-[1.2] z-0"
-          style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
+          style={{ backgroundImage: `url('/assets/hero-bg.webp')` }}
         />
         
         {/* Vignette & Gradient Overlays to enhance color theme */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/30 to-background-dark/80 pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-linear-to-t from-background-dark via-background-dark/30 to-background-dark/80 pointer-events-none z-0" />
 
         {/* Soft Ambient Gold/Red Glows in Background */}
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] rounded-full bg-accent-red opacity-[0.12] blur-[130px] animated-mesh-1 pointer-events-none z-0" />
@@ -75,7 +75,7 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
               254BANDITS
             </motion.h1>
             {/* Gold sweep gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-primary/30 to-transparent -translate-x-full group-hover:animate-[sweep_1.5s_ease-in-out_infinite] pointer-events-none mix-blend-color-dodge" />
+            <div className="absolute inset-0 bg-linear-to-r from-transparent via-gold-primary/30 to-transparent -translate-x-full group-hover:animate-[sweep_1.5s_ease-in-out_infinite] pointer-events-none mix-blend-color-dodge" />
           </div>
 
           {/* Heartbeat Waveform SVG */}
@@ -120,7 +120,7 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
               <span className="font-mono text-xs tracking-widest text-muted-text">
                 RESONATING SILENCE... {Math.round(progress)}%
               </span>
-              <div className="w-full h-[1px] bg-border-dark relative overflow-hidden">
+              <div className="w-full h-px bg-border-dark relative overflow-hidden">
                 <motion.div
                   className="absolute left-0 top-0 h-full bg-gold-primary"
                   style={{ width: `${progress}%` }}

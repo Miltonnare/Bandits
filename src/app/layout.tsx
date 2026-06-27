@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "254Bandits",
     images: [
       {
-        url: "/assets/hero-bg.jpg",
+        url: "/assets/hero-bg.webp",
         width: 1200,
         height: 1200,
         alt: "254Bandits Logo",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "254Bandits | Silence Has a Sound",
     description: "Kenya's voice of emotional rap redefining storytelling through raw vulnerability and luxury neo-noir art.",
-    images: ["/assets/hero-bg.jpg"],
+    images: ["/assets/hero-bg.webp"],
   },
 };
 

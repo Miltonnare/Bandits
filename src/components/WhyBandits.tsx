@@ -71,7 +71,7 @@ export default function WhyBandits() {
           </div>
           
           {/* Accent indicator */}
-          <div className="w-12 h-[1px] bg-border-dark group-hover:bg-gold-primary transition-colors" />
+          <div className="w-12 h-px bg-border-dark group-hover:bg-gold-primary transition-colors" />
         </motion.div>
       ))}
     </div>
