@@ -16,7 +16,7 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
   
   const tracks: Track[] = [
     { title: "echoes of me", artist: "Rasta Bandit", duration: "03:14", genre: "ECHOES OF ME / RAW RAP", youtubeId: "vkwYOYbDvpc" },
-    { title: "marafiki", artist: "254Bandits", duration: "03:09", genre: "NIKO ALONE / EMO TRAP", youtubeId: "WgSNVisMiJg" },
+    { title: "liberty", artist: "Rockstar Bandit", duration: "02:57", genre: "LIBERTY / RAW RAP", youtubeId: "HXO9HLZEq6k" },
     { title: "niko alone", artist: "254Bandits", duration: "02:37", genre: "NIKO ALONE / NOIR RAP", youtubeId: "37PI-GU_rUA" },
     { title: "rock na rasta", artist: "254Bandits", duration: "03:05", genre: "FINN SAVAGE / MELODIC", youtubeId: "WtLzPrVLimE" },
   ];
