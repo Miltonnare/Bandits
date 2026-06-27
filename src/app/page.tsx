@@ -33,14 +33,6 @@ export default function Home() {
   // Video showcase datasets
   const videoClips = [
     {
-      id: "v1",
-      title: "marafiki (Official Audio)",
-      category: "NIKO ALONE",
-      duration: "03:09",
-      thumb: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='100%25' height='100%25' fill='%230F0F10'/%3E%3Ccircle cx='160' cy='90' r='30' fill='%23C1121F' opacity='0.2'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-style='italic' fill='%23D4AF37' font-size='12'%3Emarafiki (Audio)%3C/text%3E%3C/svg%3E",
-      url: "https://www.youtube.com/embed/WgSNVisMiJg",
-    },
-    {
       id: "v2",
       title: "niko alone (Official Audio)",
       category: "NIKO ALONE",
@@ -92,7 +84,7 @@ export default function Home() {
           {/* Floating Contact CTA */}
           <div className="fixed bottom-24 right-6 z-250 flex items-center space-x-3 select-none">
             <a 
-              href="tel:+254741312224" 
+              href="tel:+254741423757" 
               className="frosted-glass flex items-center justify-center w-12 h-12 text-gold-primary hover:bg-gold-primary hover:text-background-dark border border-gold-primary/30 transition-all duration-300 shadow-xl cursor-pointer"
               title="Call Management"
             >
@@ -309,7 +301,7 @@ export default function Home() {
                 </p>
                 <div className="space-y-1 font-mono text-[10px] text-muted-text tracking-widest uppercase">
                   <div>GENERAL INQUIRIES: rockstarbandit20@gmail.com</div>
-                  <div className="text-gold-primary font-semibold">PHONE: +254 741 312 224</div>
+                  <div className="text-gold-primary font-semibold">PHONE: +254 741423757</div>
                 </div>
               </div>
               <div className="lg:col-span-7">
@@ -331,7 +323,7 @@ export default function Home() {
                   Silence has a sound. re-engineering vulnerability in East Africa through premium neo-noir storytelling.
                 </p>
                 <div className="text-[10px] font-mono text-gold-primary tracking-wider uppercase pt-2 space-y-1">
-                  <div>PHONE: +254 741 312 224</div>
+                  <div>PHONE: +254 741423757</div>
                   <div>EMAIL: rockstarbandit20@gmail.com</div>
                 </div>
               </div>
