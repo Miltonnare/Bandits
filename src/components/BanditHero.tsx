@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { Play, Calendar, User, ArrowDown } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { Play, Calendar, User, ArrowDown, Volume2, VolumeX } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function BanditHero() {
@@ -71,6 +71,24 @@ export default function BanditHero() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Sync state with AudioPlayer broadcasts
+  useEffect(() => {
+    const handleState = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail !== undefined) {
+        setIsPlaying(customEvent.detail.isPlaying);
+      }
+    };
+    window.addEventListener("banditAudioState", handleState);
+    return () => window.removeEventListener("banditAudioState", handleState);
+  }, []);
+
+  const toggleAudio = () => {
+    window.dispatchEvent(new CustomEvent("toggleBanditAudio"));
+  };
+
   // Scroll to section helper
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -81,11 +99,22 @@ export default function BanditHero() {
 
   return (
     <div className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-background-dark select-none">
-      {/* Brand image backdrop with premium overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 opacity-[0.22] pointer-events-none mix-blend-luminosity filter saturate-[0.1] contrast-[1.1] blur-[1px]"
-        style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
-      />
+      {/* Autoplay muted background video with image fallback */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none scale-105 opacity-[0.18] mix-blend-luminosity filter saturate-[0.1] contrast-[1.1] blur-[1px]">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-dramatic-drizzle-on-a-windshield-in-slow-motion-41848-large.mp4" type="video/mp4" />
+        </video>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat z-10 opacity-50"
+          style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
+        />
+      </div>
       
       {/* Ambient gradient sweeps */}
       <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/80 to-transparent pointer-events-none" />
@@ -186,21 +215,41 @@ export default function BanditHero() {
           >
             <button
               onClick={() => scrollToSection("discography")}
-              className="magnetic-btn px-8 py-4 bg-gold-primary hover:bg-transparent hover:text-gold-primary text-background-dark border border-gold-primary font-display font-medium text-xs tracking-widest transition-all duration-300 flex items-center space-x-2"
+              className="magnetic-btn px-8 py-4 bg-gold-primary hover:bg-transparent hover:text-gold-primary text-background-dark border border-gold-primary font-display font-medium text-xs tracking-widest transition-all duration-300 flex items-center space-x-2 cursor-pointer"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
               <span>LISTEN NOW</span>
             </button>
             <button
+              onClick={toggleAudio}
+              className={`magnetic-btn px-8 py-4 border transition-all duration-300 flex items-center space-x-2 font-display font-medium text-xs tracking-widest cursor-pointer ${
+                isPlaying 
+                  ? "border-accent-red text-accent-red bg-accent-red/5"
+                  : "border-gold-primary text-gold-primary bg-gold-primary/5"
+              }`}
+            >
+              {isPlaying ? (
+                <>
+                  <VolumeX className="w-3.5 h-3.5" />
+                  <span>PAUSE AMBIENT</span>
+                </>
+              ) : (
+                <>
+                  <Volume2 className="w-3.5 h-3.5" />
+                  <span>UNMUTE SOUNDTRACK</span>
+                </>
+              )}
+            </button>
+            <button
               onClick={() => scrollToSection("bandits")}
-              className="magnetic-btn px-8 py-4 border border-border-dark hover:border-gold-primary text-white-editorial hover:text-gold-primary bg-secondary-dark/40 font-display font-medium text-xs tracking-widest transition-all duration-300 flex items-center space-x-2"
+              className="magnetic-btn px-8 py-4 border border-border-dark hover:border-gold-primary text-white-editorial hover:text-gold-primary bg-secondary-dark/40 font-display font-medium text-xs tracking-widest transition-all duration-300 flex items-center space-x-2 cursor-pointer"
             >
               <User className="w-3.5 h-3.5" />
               <span>MEET BANDITS</span>
             </button>
             <button
               onClick={() => scrollToSection("booking")}
-              className="magnetic-btn px-8 py-4 border border-gold-primary/40 hover:border-gold-primary text-gold-primary bg-gold-primary/5 font-display font-medium text-xs tracking-widest transition-all duration-300 flex items-center space-x-2"
+              className="magnetic-btn px-8 py-4 border border-gold-primary/40 hover:border-gold-primary text-gold-primary bg-gold-primary/5 font-display font-medium text-xs tracking-widest transition-all duration-300 flex items-center space-x-2 cursor-pointer"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>BOOK US</span>

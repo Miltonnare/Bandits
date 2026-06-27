@@ -12,6 +12,8 @@ interface TrackRelease {
   spotify: string;
   apple: string;
   audiomack: string;
+  youtube: string;
+  boomplay: string;
   lyrics: string[];
   meaning: string;
   credits: string;
@@ -28,6 +30,8 @@ export default function Discography() {
       spotify: "https://open.spotify.com",
       apple: "https://music.apple.com",
       audiomack: "https://audiomack.com",
+      youtube: "https://youtube.com/channel/UC3wF-GxTK9jXaVy9iRVWsXw",
+      boomplay: "https://boomplay.com",
       lyrics: [
         "[ ALBUM TRACKLIST ]",
         "1. marafiki - 3:09",
@@ -55,6 +59,8 @@ export default function Discography() {
       spotify: "https://open.spotify.com",
       apple: "https://music.apple.com",
       audiomack: "https://audiomack.com",
+      youtube: "https://youtube.com/channel/UC3wF-GxTK9jXaVy9iRVWsXw",
+      boomplay: "https://boomplay.com",
       lyrics: [
         "[ ALBUM TRACKLIST ]",
         "1. heart pain - 3:18",
@@ -89,6 +95,8 @@ export default function Discography() {
       spotify: "https://open.spotify.com",
       apple: "https://music.apple.com",
       audiomack: "https://audiomack.com",
+      youtube: "https://youtube.com/channel/UC3wF-GxTK9jXaVy9iRVWsXw",
+      boomplay: "https://boomplay.com",
       lyrics: [
         "[ Rasta Bandit - Solo Single ]",
         "These are the echoes of what I used to be,",
@@ -108,6 +116,8 @@ export default function Discography() {
       spotify: "https://open.spotify.com",
       apple: "https://music.apple.com",
       audiomack: "https://audiomack.com",
+      youtube: "https://youtube.com/channel/UC3wF-GxTK9jXaVy9iRVWsXw",
+      boomplay: "https://boomplay.com",
       lyrics: [
         "[ 254Bandits - Freestyle Release ]",
         "Complications in my mind, got no time to unwind,",
@@ -165,7 +175,7 @@ export default function Discography() {
               </div>
 
               {/* Streaming buttons */}
-              <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-4 pt-4 border-t border-border-dark/30">
+              <div className="flex flex-wrap justify-center md:justify-start gap-2.5 mt-4 pt-4 border-t border-border-dark/30">
                 <a
                   href={release.spotify}
                   target="_blank"
@@ -177,13 +187,23 @@ export default function Discography() {
                   <ExternalLink className="w-2.5 h-2.5" />
                 </a>
                 <a
+                  href={release.youtube}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-muted-text hover:text-white-editorial transition-colors flex items-center space-x-1 font-mono text-[9px] tracking-widest"
+                >
+                  <span>YOUTUBE</span>
+                  <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+                <a
                   href={release.apple}
                   target="_blank"
                   rel="noreferrer"
                   onClick={(e) => e.stopPropagation()}
                   className="text-muted-text hover:text-white-editorial transition-colors flex items-center space-x-1 font-mono text-[9px] tracking-widest"
                 >
-                  <span>APPLE MUSIC</span>
+                  <span>APPLE</span>
                   <ExternalLink className="w-2.5 h-2.5" />
                 </a>
                 <a
@@ -194,6 +214,16 @@ export default function Discography() {
                   className="text-muted-text hover:text-white-editorial transition-colors flex items-center space-x-1 font-mono text-[9px] tracking-widest"
                 >
                   <span>AUDIOMACK</span>
+                  <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+                <a
+                  href={release.boomplay}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-muted-text hover:text-white-editorial transition-colors flex items-center space-x-1 font-mono text-[9px] tracking-widest"
+                >
+                  <span>BOOMPLAY</span>
                   <ExternalLink className="w-2.5 h-2.5" />
                 </a>
               </div>
@@ -236,7 +266,7 @@ export default function Discography() {
                 }`}
               >
                 <MessageCircle className="w-3.5 h-3.5" />
-                <span>LYRICS MODE</span>
+                <span>TRACKLIST & LYRICS</span>
               </button>
               <button
                 onClick={() => setActiveTab("details")}

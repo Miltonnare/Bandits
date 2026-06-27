@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Play, Pause, Volume2, VolumeX, Music, List, Disc, ChevronUp, ChevronDown } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Music, List, Disc, ChevronUp, ChevronDown, SkipBack, SkipForward } from "lucide-react";
 
 interface Track {
   title: string;
@@ -44,6 +44,30 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
       setIsPlaying(true);
     }
   }, [isSoundEnabled]);
+
+  // Listen to toggle sound events from Hero or other triggers
+  useEffect(() => {
+    const handleToggle = () => {
+      setIsPlaying((prev) => !prev);
+    };
+    const handleSetPlayState = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail !== undefined) {
+        setIsPlaying(customEvent.detail.isPlaying);
+      }
+    };
+    window.addEventListener("toggleBanditAudio", handleToggle);
+    window.addEventListener("setBanditAudioPlayState", handleSetPlayState);
+    return () => {
+      window.removeEventListener("toggleBanditAudio", handleToggle);
+      window.removeEventListener("setBanditAudioPlayState", handleSetPlayState);
+    };
+  }, []);
+
+  // Broadcast state changes globally
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("banditAudioState", { detail: { isPlaying } }));
+  }, [isPlaying]);
 
   // Handle master play / pause / volume changes
   useEffect(() => {
@@ -330,15 +354,39 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
 
             {/* Playback Controls & Waveform Visualizer */}
             <div className="flex items-center justify-between space-x-4">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsPlaying(!isPlaying);
-                }}
-                className="w-10 h-10 border border-gold-primary bg-gold-primary text-background-dark hover:bg-transparent hover:text-gold-primary transition-all duration-300 flex items-center justify-center"
-              >
-                {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
-              </button>
+              <div className="flex items-center space-x-1.5 flex-shrink-0">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
+                    setIsPlaying(true);
+                  }}
+                  className="w-7 h-7 border border-border-dark text-muted-text hover:text-gold-primary hover:border-gold-primary transition-all duration-300 flex items-center justify-center cursor-pointer"
+                >
+                  <SkipBack className="w-3 h-3 fill-current" />
+                </button>
+                
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsPlaying(!isPlaying);
+                  }}
+                  className="w-8 h-8 border border-gold-primary bg-gold-primary text-background-dark hover:bg-transparent hover:text-gold-primary transition-all duration-300 flex items-center justify-center cursor-pointer"
+                >
+                  {isPlaying ? <Pause className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current ml-0.5" />}
+                </button>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveTrackIndex((prev) => (prev + 1) % tracks.length);
+                    setIsPlaying(true);
+                  }}
+                  className="w-7 h-7 border border-border-dark text-muted-text hover:text-gold-primary hover:border-gold-primary transition-all duration-300 flex items-center justify-center cursor-pointer"
+                >
+                  <SkipForward className="w-3 h-3 fill-current" />
+                </button>
+              </div>
 
               {/* Visualizer Canvas */}
               <canvas ref={canvasRef} className="h-8 flex-1 w-full bg-secondary-dark/30 border-b border-border-dark/20" />

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Play, Calendar, ExternalLink, Download, 
   MapPin, Clock, ArrowRight, Radio, Film, Image as ImageIcon,
-  Compass, Award, Globe, Heart, Send, Check
+  Compass, Award, Globe, Heart, Send, Check, Phone
 } from "lucide-react";
 
 // Import custom interactive components
@@ -18,6 +18,7 @@ import MerchShowcase from "@/components/MerchShowcase";
 import BookingForm from "@/components/BookingForm";
 import InteractiveGlobe from "@/components/InteractiveGlobe";
 import AudioPlayer from "@/components/AudioPlayer";
+import WhyBandits from "@/components/WhyBandits";
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
@@ -66,14 +67,6 @@ export default function Home() {
     { id: "g4", category: "BACKSTAGE", title: "Pre-Show Rituals", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='100%25' height='100%25' fill='%23181818'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' fill='%23A5A5A5' font-size='12'%3EBACKSTAGE MEDITATION%3C/text%3E%3C/svg%3E" },
   ];
 
-  // Upcoming tours datasets
-  const tours = [
-    { id: "t1", date: "AUG 14", venue: "The Alchemist Bar", city: "Nairobi, KE", time: "20:00 EAT", status: "SELLING FAST" },
-    { id: "t2", date: "SEP 05", venue: "KOKO London", city: "London, UK", time: "19:30 GMT", status: "TICKETS" },
-    { id: "t3", date: "SEP 22", venue: "The Roxy Theatre", city: "Los Angeles, US", time: "20:00 PST", status: "TICKETS" },
-    { id: "t4", date: "OCT 12", venue: "LIQUID Tokyo", city: "Tokyo, JP", time: "19:00 JST", status: "SOLD OUT" },
-  ];
-
   return (
     <>
       <AnimatePresence>
@@ -88,6 +81,17 @@ export default function Home() {
             className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08] pointer-events-none mix-blend-luminosity filter saturate-[0.1] contrast-[1.15] z-0"
             style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
           />
+
+          {/* Floating Contact CTA */}
+          <div className="fixed bottom-24 right-6 z-[250] flex items-center space-x-3 select-none">
+            <a 
+              href="tel:+254741312224" 
+              className="frosted-glass flex items-center justify-center w-12 h-12 text-gold-primary hover:text-white-editorial hover:bg-gold-primary hover:text-background-dark border border-gold-primary/30 transition-all duration-300 shadow-xl cursor-pointer"
+              title="Call Management"
+            >
+              <Phone className="w-4 h-4" />
+            </a>
+          </div>
           
           {/* Ambient soundtrack controls */}
           <AudioPlayer isSoundEnabled={soundEnabled} />
@@ -279,159 +283,20 @@ export default function Home() {
             </div>
           </section>
 
-          {/* SECTION 10: EVENTS & TICKETS */}
-          <section id="events" className="py-24 border-t border-border-dark/20 bg-secondary-dark/30 relative select-none">
+
+
+          {/* SECTION 12: WHY 254BANDITS */}
+          <section id="why-bandits" className="py-24 bg-secondary-dark/10 relative">
             <div className="max-w-[90%] mx-auto mb-16 space-y-3">
               <span className="text-gold-primary text-xs font-mono tracking-widest uppercase">
-                LIVE PERFORMANCES
+                CORE PROPOSITIONS
               </span>
               <h2 className="font-serif italic text-4xl md:text-5xl text-white-editorial font-medium">
-                Resonance Locations.
+                Why 254Bandits.
               </h2>
             </div>
-
-            <div className="max-w-[90%] mx-auto space-y-4">
-              {tours.map((tour) => (
-                <div
-                  key={tour.id}
-                  className="frosted-glass p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-6 group hover:border-gold-primary/40 transition-all duration-300"
-                >
-                  {/* Date Block */}
-                  <div className="flex items-center space-x-6 w-full md:w-auto">
-                    <span className="font-display font-bold text-2xl text-gold-primary w-24">
-                      {tour.date}
-                    </span>
-                    <div className="space-y-1">
-                      <h4 className="font-serif italic text-xl text-white-editorial group-hover:text-gold-primary transition-colors font-medium">
-                        {tour.venue}
-                      </h4>
-                      <div className="flex items-center space-x-2 text-xs text-muted-text font-light">
-                        <MapPin className="w-3.5 h-3.5 text-accent-red" />
-                        <span>{tour.city}</span>
-                        <span>•</span>
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>{tour.time}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Actions & Tickets */}
-                  <div className="flex items-center space-x-6 w-full md:w-auto justify-between md:justify-end">
-                    <span className={`text-[10px] font-mono tracking-widest px-2 py-0.5 border ${
-                      tour.status === "SOLD OUT" 
-                        ? "border-accent-red/20 text-accent-red bg-accent-red/5"
-                        : "border-gold-primary/20 text-gold-primary bg-gold-primary/5"
-                    }`}>
-                      {tour.status}
-                    </span>
-                    {tour.status !== "SOLD OUT" && (
-                      <button className="magnetic-btn px-6 py-2.5 bg-gold-primary text-background-dark font-display font-medium text-xs tracking-widest hover:bg-transparent hover:text-gold-primary border border-gold-primary transition-all duration-300 flex items-center space-x-1.5">
-                        <span>GET TICKETS</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* SECTION 11: NEWSROOM & ELECTRONIC PRESS KIT (EPK) */}
-          <section id="press-kit" className="py-24 border-y border-border-dark/20 relative select-none">
-            <div className="max-w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
-              
-              {/* Newsroom Editorial Column */}
-              <div className="lg:col-span-7 space-y-8">
-                <div className="space-y-3">
-                  <span className="text-gold-primary text-xs font-mono tracking-widest uppercase">
-                    EDITORIAL JOURNAL
-                  </span>
-                  <h3 className="font-serif italic text-3xl md:text-4xl text-white-editorial font-medium">
-                    The Pressroom.
-                  </h3>
-                </div>
-
-                <div className="space-y-6">
-                  {/* Article 1 */}
-                  <article className="border-b border-border-dark/40 pb-6 space-y-2 group cursor-pointer">
-                    <span className="text-[10px] font-mono text-muted-text">PRESS RELEASE / DEC 2025</span>
-                    <h4 className="font-serif italic text-xl text-white-editorial group-hover:text-gold-primary transition-colors leading-snug">
-                      "254Bandits redefine vulnerability in East African Hip Hop with breakout track Silence Has a Sound."
-                    </h4>
-                    <p className="text-xs text-muted-text font-light leading-relaxed">
-                      Music critics worldwide highlight the duo's cinematic low-pass instrumentation and raw poetic delivery, marking them as Kenya's voice of a new generation.
-                    </p>
-                  </article>
-                  {/* Article 2 */}
-                  <article className="pb-2 space-y-2 group cursor-pointer">
-                    <span className="text-[10px] font-mono text-muted-text">INTERVIEW / APR 2026</span>
-                    <h4 className="font-serif italic text-xl text-white-editorial group-hover:text-gold-primary transition-colors leading-snug">
-                      "Behind the Noir Masks: A sit-down dialogue with Rockstar and Rasta Bandit on creative isolation."
-                    </h4>
-                    <p className="text-xs text-muted-text font-light leading-relaxed">
-                      Exploring the recording process inside bedroom wardrobes, engineering sub-basses, and refusing commercial Afrobeats constructs.
-                    </p>
-                  </article>
-                </div>
-              </div>
-
-              {/* Electronic Press Kit (EPK) */}
-              <div className="lg:col-span-5 border-l border-border-dark/30 lg:pl-12 space-y-8">
-                <div className="space-y-3">
-                  <span className="text-gold-primary text-xs font-mono tracking-widest uppercase">
-                    MEDIA KIT PACK
-                  </span>
-                  <h3 className="font-serif italic text-3xl text-white-editorial font-medium">
-                    Electronic Press Kit.
-                  </h3>
-                </div>
-
-                <p className="text-xs text-muted-text leading-relaxed font-light">
-                  Download approved technical spec rider materials, bio logs, logos, and high-resolution visual portraits for press releases and festival lineups.
-                </p>
-
-                <div className="space-y-4">
-                  {/* Download item 1 */}
-                  <div className="flex justify-between items-center border border-border-dark p-4 bg-secondary-dark/40 hover:border-gold-primary/40 transition-colors">
-                    <div className="space-y-1">
-                      <span className="text-xs font-display font-medium text-white-editorial block">
-                        Technical Spec Rider
-                      </span>
-                      <span className="text-[9px] font-mono text-muted-text">
-                        PDF FILE / 2.4 MB
-                      </span>
-                    </div>
-                    <button className="p-2 border border-border-dark text-muted-text hover:border-gold-primary hover:text-gold-primary transition-all">
-                      <Download className="w-4 h-4" />
-                    </button>
-                  </div>
-                  {/* Download item 2 */}
-                  <div className="flex justify-between items-center border border-border-dark p-4 bg-secondary-dark/40 hover:border-gold-primary/40 transition-colors">
-                    <div className="space-y-1">
-                      <span className="text-xs font-display font-medium text-white-editorial block">
-                        Press Assets & Logos
-                      </span>
-                      <span className="text-[9px] font-mono text-muted-text">
-                        ZIP FILE / 14.8 MB
-                      </span>
-                    </div>
-                    <button className="p-2 border border-border-dark text-muted-text hover:border-gold-primary hover:text-gold-primary transition-all">
-                      <Download className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* SECTION 12: BRAND COLLABORATIONS */}
-          <section id="collaborations" className="py-16 select-none bg-secondary-dark/10">
-            <div className="max-w-[90%] mx-auto flex flex-wrap justify-center items-center gap-12 md:gap-16 opacity-35 hover:opacity-60 transition-opacity duration-300">
-              <span className="font-serif italic text-lg text-white-editorial font-semibold tracking-widest">SPOTIFY</span>
-              <span className="font-serif italic text-lg text-white-editorial font-semibold tracking-widest">APPLE MUSIC</span>
-              <span className="font-serif italic text-lg text-white-editorial font-semibold tracking-widest">NIKE</span>
-              <span className="font-serif italic text-lg text-white-editorial font-semibold tracking-widest">SONY MUSIC</span>
-              <span className="font-serif italic text-lg text-white-editorial font-semibold tracking-widest">UNIVERSAL MUSIC</span>
+            <div className="max-w-[90%] mx-auto">
+              <WhyBandits />
             </div>
           </section>
 
@@ -457,6 +322,7 @@ export default function Home() {
                 <div className="space-y-1 font-mono text-[10px] text-muted-text tracking-widest uppercase">
                   <div>GENERAL INQUIRIES: booking@254bandits.com</div>
                   <div>MANAGEMENT: agency@254bandits.com</div>
+                  <div className="text-gold-primary font-semibold">PHONE: +254 741 312 224</div>
                 </div>
               </div>
               <div className="lg:col-span-7">
@@ -477,6 +343,9 @@ export default function Home() {
                 <p className="text-xs text-muted-text max-w-xs font-light leading-relaxed">
                   Silence has a sound. re-engineering vulnerability in East Africa through premium neo-noir storytelling.
                 </p>
+                <div className="text-[10px] font-mono text-gold-primary tracking-wider uppercase pt-2">
+                  PHONE: +254 741 312 224
+                </div>
               </div>
 
               {/* Navigation list */}
