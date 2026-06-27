@@ -96,25 +96,48 @@ export default function BanditHero() {
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />
 
       {/* Header / Brand Logo */}
-      <header className="relative w-full max-w-[90%] mx-auto py-8 z-20 flex justify-between items-center">
-        <div className="flex flex-col">
-          <span className="font-serif italic text-2xl font-bold tracking-widest text-white-editorial">
-            254B
-          </span>
-          <span className="text-[8px] font-mono text-gold-primary tracking-widest uppercase mt-0.5">
-            SILENCE HAS A SOUND
-          </span>
+      <header className="fixed top-0 left-0 right-0 z-[150] w-full border-b border-gold-primary/20 backdrop-blur-md bg-background-dark/75 py-5 select-none">
+        <div className="max-w-[90%] mx-auto flex justify-between items-center">
+          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => scrollToSection("hero")}>
+            <div className="relative">
+              <span className="font-serif italic text-2xl font-bold tracking-widest text-white-editorial text-glow">
+                254B
+              </span>
+              <span className="absolute -top-0.5 -right-2.5 w-1.5 h-1.5 rounded-full bg-gold-primary animate-ping" />
+              <span className="absolute -top-0.5 -right-2.5 w-1.5 h-1.5 rounded-full bg-gold-primary" />
+            </div>
+            <span className="text-[8px] font-mono text-gold-primary tracking-widest uppercase mt-0.5 border-l border-border-dark/60 pl-3 hidden sm:inline-block">
+              SILENCE HAS A SOUND
+            </span>
+          </div>
+          
+          {/* Navigation list */}
+          <nav className="flex items-center space-x-4 md:space-x-8 text-[10px] font-mono tracking-[0.2em] md:tracking-[0.25em]">
+            <button onClick={() => scrollToSection("about")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group hidden md:inline-block">
+              ABOUT
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </button>
+            <button onClick={() => scrollToSection("timeline")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group hidden md:inline-block">
+              CHRONICLES
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </button>
+            <button onClick={() => scrollToSection("bandits")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group hidden md:inline-block">
+              MEMBERS
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </button>
+            <button onClick={() => scrollToSection("discography")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group">
+              DISCOGRAPHY
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </button>
+            <button onClick={() => scrollToSection("merchandise")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group">
+              SHOP
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </button>
+            <button onClick={() => scrollToSection("booking")} className="text-gold-primary hover:text-white-editorial hover:text-glow transition-all border border-gold-primary/30 px-3 py-1 bg-gold-primary/5 hover:bg-gold-primary hover:text-background-dark cursor-pointer font-medium tracking-widest text-[9px]">
+              BOOKINGS
+            </button>
+          </nav>
         </div>
-        
-        {/* Navigation list */}
-        <nav className="hidden md:flex items-center space-x-8 text-[10px] font-mono tracking-[0.25em] text-muted-text">
-          <button onClick={() => scrollToSection("about")} className="hover:text-gold-primary transition-colors cursor-pointer">ABOUT</button>
-          <button onClick={() => scrollToSection("timeline")} className="hover:text-gold-primary transition-colors cursor-pointer">CHRONICLES</button>
-          <button onClick={() => scrollToSection("bandits")} className="hover:text-gold-primary transition-colors cursor-pointer">MEMBERS</button>
-          <button onClick={() => scrollToSection("discography")} className="hover:text-gold-primary transition-colors cursor-pointer">DISCOGRAPHY</button>
-          <button onClick={() => scrollToSection("merchandise")} className="hover:text-gold-primary transition-colors cursor-pointer">SHOP</button>
-          <button onClick={() => scrollToSection("booking")} className="hover:text-gold-primary transition-colors cursor-pointer">BOOKINGS</button>
-        </nav>
       </header>
 
       {/* Hero Headline content */}

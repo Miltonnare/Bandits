@@ -40,9 +40,21 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
         exit={{ opacity: 0, y: -40, transition: { duration: 1, ease: [0.76, 0, 0.24, 1] } }}
         className="fixed inset-0 z-[9999] flex flex-col items-center justify-between bg-background-dark p-8 md:p-12 overflow-hidden select-none"
       >
+        {/* Cinematic brand logo background image for intro screen */}
+        <motion.div 
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1.03, opacity: 0.16 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none mix-blend-luminosity filter saturate-[0.1] contrast-[1.2] z-0"
+          style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
+        />
+        
+        {/* Vignette & Gradient Overlays to enhance color theme */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/30 to-background-dark/80 pointer-events-none z-0" />
+
         {/* Soft Ambient Gold/Red Glows in Background */}
-        <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[35vw] h-[35vw] rounded-full bg-accent-red opacity-10 blur-[120px] animated-mesh-1" />
-        <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[30vw] h-[30vw] rounded-full bg-gold-primary opacity-5 blur-[100px] animated-mesh-2" />
+        <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] rounded-full bg-accent-red opacity-[0.12] blur-[130px] animated-mesh-1 pointer-events-none z-0" />
+        <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[35vw] h-[35vw] rounded-full bg-gold-primary opacity-[0.08] blur-[110px] animated-mesh-2 pointer-events-none z-0" />
 
         {/* Top Header info */}
         <div className="w-full flex justify-between items-center text-[10px] tracking-[0.25em] font-mono text-muted-text uppercase">

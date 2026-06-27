@@ -5,7 +5,7 @@
   --color-secondary-dark: #0F0F10;
   --color-surface-dark: #181818;
   --color-card-dark: #1F1F1F;
-  --color-border-dark: #2E2E2E;
+  --color-border-dark: #3F3F46;
   
   --color-gold-primary: #D4AF37;
   --color-gold-deep: #B8860B;
@@ -13,7 +13,7 @@
   --color-accent-red: #C1121F;
   
   --color-white-editorial: #F9F9F9;
-  --color-muted-text: #A5A5A5;
+  --color-muted-text: #D5D5D5;
   
   --font-serif: var(--font-cormorant);
   --font-sans: var(--font-jakarta);
@@ -43,7 +43,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2E2E2E;
+  background: #3F3F46;
   border-radius: 3px;
 }
 
@@ -56,14 +56,14 @@ body {
   background: rgba(15, 15, 16, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(46, 46, 46, 0.5);
+  border: 1px solid rgba(63, 63, 70, 0.5);
 }
 
 .frosted-card {
   background: rgba(31, 31, 31, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(46, 46, 46, 0.4);
+  border: 1px solid rgba(63, 63, 70, 0.5);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }

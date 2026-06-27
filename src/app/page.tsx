@@ -83,6 +83,12 @@ export default function Home() {
       {!showIntro && (
         <div className="relative min-h-screen bg-background-dark text-white-editorial overflow-hidden">
           
+          {/* Global brand logo background image watermark */}
+          <div 
+            className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08] pointer-events-none mix-blend-luminosity filter saturate-[0.1] contrast-[1.15] z-0"
+            style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
+          />
+          
           {/* Ambient soundtrack controls */}
           <AudioPlayer isSoundEnabled={soundEnabled} />
 
