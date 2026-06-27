@@ -348,9 +348,9 @@ export default function Home() {
                   CHANNELS
                 </h4>
                 <div className="flex flex-col space-y-2 text-xs font-mono text-muted-text">
-                  <a href="https://spotify.com" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">SPOTIFY</a>
-                  <a href="https://apple.com" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">APPLE MUSIC</a>
-                  <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">INSTAGRAM</a>
+                  <a href="https://open.spotify.com/artist/0qfSt9N3drC7y1QG0YNeY6" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">SPOTIFY</a>
+                  <a href="https://music.apple.com/us/artist/bandits/1821566959" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">APPLE MUSIC</a>
+                  <a href="https://www.instagram.com/254bandits/" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">INSTAGRAM</a>
                   <a href="https://youtube.com/@254bandits?si=vJZCTAgV5nSwfi4Y" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">YOUTUBE</a>
                   <a href="https://discord.com" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">DISCORD (COMMUNITY)</a>
                 </div>
