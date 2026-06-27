@@ -11,7 +11,7 @@ interface IntroScreenProps {
 export default function IntroScreen({ onEnter }: IntroScreenProps) {
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(false);
 
   // 1. Simulate loading progress
   useEffect(() => {
