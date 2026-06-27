@@ -1,42 +1,35 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Play, Pause, Volume2, VolumeX, Music, List, Disc, ChevronUp, ChevronDown, SkipBack, SkipForward } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Music, List, Disc, ChevronDown, SkipBack, SkipForward } from "lucide-react";
 
 interface Track {
   title: string;
   artist: string;
   duration: string;
   genre: string;
-  synthType: "drone" | "pad" | "pulse";
-  tempo: number;
+  youtubeId: string;
 }
 
 export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
   const tracks: Track[] = [
-    { title: "marafiki", artist: "254Bandits", duration: "03:09", genre: "NIKO ALONE / EMO TRAP", synthType: "drone", tempo: 75 },
-    { title: "niko alone", artist: "254Bandits", duration: "02:37", genre: "NIKO ALONE / NOIR RAP", synthType: "pad", tempo: 80 },
-    { title: "rock na rasta", artist: "254Bandits", duration: "03:05", genre: "FINN SAVAGE / MELODIC", synthType: "pulse", tempo: 70 },
+    { title: "echoes of me", artist: "Rasta Bandit", duration: "03:14", genre: "ECHOES OF ME / RAW RAP", youtubeId: "vkwYOYbDvpc" },
+    { title: "marafiki", artist: "254Bandits", duration: "03:09", genre: "NIKO ALONE / EMO TRAP", youtubeId: "WgSNVisMiJg" },
+    { title: "niko alone", artist: "254Bandits", duration: "02:37", genre: "NIKO ALONE / NOIR RAP", youtubeId: "37PI-GU_rUA" },
+    { title: "rock na rasta", artist: "254Bandits", duration: "03:05", genre: "FINN SAVAGE / MELODIC", youtubeId: "WtLzPrVLimE" },
   ];
 
   const [activeTrackIndex, setActiveTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.3);
+  const [volume, setVolume] = useState(0.4);
   const [isMuted, setIsMuted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
 
-  // Web Audio refs
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const masterGainRef = useRef<GainNode | null>(null);
-  const analyserRef = useRef<AnalyserNode | null>(null);
-  
-  // Synthesizer voices
-  const subOscRef = useRef<OscillatorNode | null>(null);
-  const chordOscsRef = useRef<OscillatorNode[]>([]);
-  const synthIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const playerRef = useRef<any>(null);
+  const [isPlayerReady, setIsPlayerReady] = useState(false);
 
   // Initialize sound from intro trigger
   useEffect(() => {
@@ -44,6 +37,68 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
       setIsPlaying(true);
     }
   }, [isSoundEnabled]);
+
+  // Load YouTube Player API script dynamically
+  useEffect(() => {
+    if ((window as any).YT) return;
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName("script")[0];
+    if (firstScriptTag && firstScriptTag.parentNode) {
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+  }, []);
+
+  // Initialize player when YT API is ready
+  useEffect(() => {
+    let checkInterval: NodeJS.Timeout;
+
+    const initYTPlayer = () => {
+      const win = window as any;
+      if (win.YT && win.YT.Player) {
+        clearInterval(checkInterval);
+        
+        playerRef.current = new win.YT.Player("hidden-youtube-player", {
+          videoId: tracks[activeTrackIndex].youtubeId,
+          playerVars: {
+            autoplay: 0,
+            controls: 0,
+            disablekb: 1,
+            fs: 0,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+            loop: 1,
+            playlist: tracks[activeTrackIndex].youtubeId
+          },
+          events: {
+            onReady: (event: any) => {
+              setIsPlayerReady(true);
+              event.target.setVolume(volume * 100);
+              if (isMuted) {
+                event.target.mute();
+              } else {
+                event.target.unMute();
+              }
+              // If sound was enabled during load, start playing
+              if (isPlaying) {
+                event.target.playVideo();
+              }
+            },
+            onStateChange: (event: any) => {
+              // Loop naturally when video ends
+              if (event.data === win.YT.PlayerState.ENDED) {
+                event.target.playVideo();
+              }
+            }
+          }
+        });
+      }
+    };
+
+    checkInterval = setInterval(initYTPlayer, 150);
+    return () => clearInterval(checkInterval);
+  }, []);
 
   // Listen to toggle sound events from Hero or other triggers
   useEffect(() => {
@@ -69,170 +124,56 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
     window.dispatchEvent(new CustomEvent("banditAudioState", { detail: { isPlaying } }));
   }, [isPlaying]);
 
-  // Handle master play / pause / volume changes
+  // Handle Play/Pause changes
   useEffect(() => {
-    if (isPlaying) {
-      initAudio();
-      startSynth();
-    } else {
-      stopSynth();
+    if (playerRef.current && isPlayerReady) {
+      if (isPlaying) {
+        playerRef.current.playVideo();
+      } else {
+        playerRef.current.pauseVideo();
+      }
     }
-  }, [isPlaying, activeTrackIndex]);
+  }, [isPlaying, isPlayerReady]);
 
+  // Handle Track Changes
   useEffect(() => {
-    if (masterGainRef.current && audioCtxRef.current) {
-      const targetVol = isMuted ? 0 : volume;
-      masterGainRef.current.gain.linearRampToValueAtTime(targetVol, audioCtxRef.current.currentTime + 0.1);
+    if (playerRef.current && isPlayerReady) {
+      playerRef.current.loadVideoById({
+        videoId: tracks[activeTrackIndex].youtubeId,
+        suggestedQuality: "small"
+      });
+      if (isPlaying) {
+        playerRef.current.playVideo();
+      } else {
+        playerRef.current.pauseVideo();
+      }
     }
-  }, [volume, isMuted]);
+  }, [activeTrackIndex, isPlayerReady]);
+
+  // Handle Volume & Mute Changes
+  useEffect(() => {
+    if (playerRef.current && isPlayerReady) {
+      playerRef.current.setVolume(volume * 100);
+      if (isMuted) {
+        playerRef.current.mute();
+      } else {
+        playerRef.current.unMute();
+      }
+    }
+  }, [volume, isMuted, isPlayerReady]);
 
   // Clean up on unmount
   useEffect(() => {
     return () => {
-      stopSynth();
-      if (audioCtxRef.current && audioCtxRef.current.state !== "closed") {
-        audioCtxRef.current.close();
+      if (playerRef.current && playerRef.current.destroy) {
+        try {
+          playerRef.current.destroy();
+        } catch (e) {}
       }
     };
   }, []);
 
-  // Web Audio Synths initialization
-  const initAudio = () => {
-    if (audioCtxRef.current) return;
-    
-    // Create Audio Context
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    const ctx = new AudioContextClass();
-    audioCtxRef.current = ctx;
-
-    // Create Analyser & Master Gain
-    const analyser = ctx.createAnalyser();
-    analyser.fftSize = 64;
-    analyserRef.current = analyser;
-
-    const masterGain = ctx.createGain();
-    masterGain.gain.value = isMuted ? 0 : volume;
-    masterGainRef.current = masterGain;
-
-    // Connect Node path: Synths -> masterGain -> analyser -> destination
-    masterGain.connect(analyser);
-    analyser.connect(ctx.destination);
-  };
-
-  const startSynth = () => {
-    if (!audioCtxRef.current) return;
-    
-    // Resume context if suspended (browser security)
-    if (audioCtxRef.current.state === "suspended") {
-      audioCtxRef.current.resume();
-    }
-
-    // Stop current nodes
-    stopSynth();
-
-    const ctx = audioCtxRef.current;
-    const masterGain = masterGainRef.current;
-    if (!masterGain) return;
-
-    const track = tracks[activeTrackIndex];
-
-    // 1. Core Ambient Sub-Drone (Root note: A1 = 55Hz, or C2 = 65.4Hz)
-    const sub = ctx.createOscillator();
-    sub.type = "sine";
-    sub.frequency.value = track.synthType === "drone" ? 55.0 : track.synthType === "pad" ? 65.4 : 48.9; // A1, C2, or G1
-    
-    const subGain = ctx.createGain();
-    subGain.gain.value = 0.45; // balanced gain
-    
-    sub.connect(subGain);
-    subGain.connect(masterGain);
-    sub.start();
-    subOscRef.current = sub;
-
-    // 2. Chords pad generation
-    const chordFrequencies = {
-      drone: [110.0, 165.0, 220.0, 261.6], // A minor base notes (A2, E3, A3, C4)
-      pad: [130.8, 196.0, 261.6, 329.6],   // C Major base notes (C3, G3, C4, E4)
-      pulse: [97.9, 146.8, 196.0, 246.9],   // G Major base notes (G2, D3, G3, B3)
-    };
-
-    const freqs = chordFrequencies[track.synthType] || chordFrequencies.drone;
-    const oscList: OscillatorNode[] = [];
-
-    freqs.forEach((f, idx) => {
-      const osc = ctx.createOscillator();
-      osc.type = "triangle";
-      
-      // Detune slightly for lush chorus texture
-      osc.frequency.value = f + (Math.random() - 0.5) * 1.5;
-      
-      const filter = ctx.createBiquadFilter();
-      filter.type = "lowpass";
-      filter.frequency.value = 400 + idx * 100; // soft cutoff
-
-      const oscGain = ctx.createGain();
-      oscGain.gain.value = 0.12;
-
-      osc.connect(filter);
-      filter.connect(oscGain);
-      oscGain.connect(masterGain);
-      osc.start();
-      
-      oscList.push(osc);
-    });
-
-    chordOscsRef.current = oscList;
-
-    // 3. Heartbeat pulsing rhythm thumper
-    let beatCount = 0;
-    const tempoInterval = (60 / track.tempo) * 1000;
-    
-    const triggerHeartbeat = () => {
-      if (!audioCtxRef.current || audioCtxRef.current.state === "suspended") return;
-      
-      const time = ctx.currentTime;
-      
-      // Kick oscillator
-      const kick = ctx.createOscillator();
-      kick.frequency.setValueAtTime(100, time);
-      kick.frequency.exponentialRampToValueAtTime(0.01, time + 0.3);
-      
-      const kickGain = ctx.createGain();
-      kickGain.gain.setValueAtTime(0.3, time);
-      kickGain.gain.exponentialRampToValueAtTime(0.001, time + 0.3);
-      
-      kick.connect(kickGain);
-      kickGain.connect(masterGain);
-      kick.start();
-      kick.stop(time + 0.35);
-
-      // Heartbeat double beat rhythm
-      beatCount++;
-      if (beatCount % 2 === 1) {
-        setTimeout(triggerHeartbeat, 250); // double beat speed
-      }
-    };
-
-    synthIntervalRef.current = setInterval(triggerHeartbeat, tempoInterval);
-  };
-
-  const stopSynth = () => {
-    if (subOscRef.current) {
-      try { subOscRef.current.stop(); } catch (e) {}
-      subOscRef.current = null;
-    }
-    chordOscsRef.current.forEach((osc) => {
-      try { osc.stop(); } catch (e) {}
-    });
-    chordOscsRef.current = [];
-    
-    if (synthIntervalRef.current) {
-      clearInterval(synthIntervalRef.current);
-      synthIntervalRef.current = null;
-    }
-  };
-
-  // Canvas visualizer loop
+  // Canvas visualizer loop (Simulated Active beats spectrum)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -253,8 +194,11 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
       
       let dataArray = new Uint8Array(32);
       
-      if (isPlaying && analyserRef.current) {
-        analyserRef.current.getByteFrequencyData(dataArray);
+      if (isPlaying) {
+        // Generate beautiful active simulated waveform with noise/variability
+        for (let i = 0; i < 32; i++) {
+          dataArray[i] = 40 + Math.sin(Date.now() * 0.005 + i * 0.45) * 35 + Math.sin(Date.now() * 0.015 + i * 0.15) * 20 + Math.random() * 10;
+        }
       } else {
         // Render fake resting wave if paused
         for (let i = 0; i < 32; i++) {
@@ -267,18 +211,15 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
       
       // Render symmetrical audio spectrum
       for (let i = 0; i < 16; i++) {
-        // Read analyzer data and normalize it
         const val = dataArray[i];
         const barHeight = (val / 255) * h * 0.95 + 2;
         
         const x = i * (barWidth + 2);
         const y = h - barHeight;
 
-        // Draw gold rounded bars
         ctx.beginPath();
         ctx.roundRect(x, y, barWidth, barHeight, 1);
         
-        // Color transition logic (accent red on peak values)
         if (val > 150) {
           ctx.fillStyle = "#C1121F";
         } else {
@@ -299,6 +240,9 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
 
   return (
     <div className="fixed bottom-6 left-6 z-200 max-w-sm select-none">
+      {/* Hidden YouTube IFrame Target */}
+      <div id="hidden-youtube-player" className="absolute w-0 h-0 opacity-0 pointer-events-none" />
+
       <div className={`frosted-glass flex flex-col shadow-2xl transition-all duration-500 ease-in-out overflow-hidden border border-border-dark ${
         isExpanded ? "w-80 p-5 space-y-4" : "w-14 h-14 items-center justify-center p-0 rounded-full cursor-pointer"
       }`}
@@ -322,7 +266,7 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
               <div className="flex items-center space-x-2">
                 <Music className="w-4 h-4 text-gold-primary animate-pulse" />
                 <span className="text-[9px] font-mono tracking-widest text-gold-primary uppercase">
-                  ATMOSPHERIC SOUNDTRACK
+                  OFFICIAL AUDIO STREAM
                 </span>
               </div>
               <button
@@ -435,7 +379,7 @@ export default function AudioPlayer({ isSoundEnabled }: { isSoundEnabled: boolea
             {showPlaylist && (
               <div className="border border-border-dark bg-secondary-dark p-2 text-xs font-mono space-y-1.5 transition-all max-h-35 overflow-y-auto">
                 <span className="text-[9px] text-muted-text tracking-widest block uppercase px-2 mb-1">
-                  CHOOSE FREQUENCY
+                  CHOOSE TRACK
                 </span>
                 {tracks.map((track, index) => (
                   <button

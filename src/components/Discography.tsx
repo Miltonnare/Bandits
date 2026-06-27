@@ -95,7 +95,7 @@ export default function Discography() {
       spotify: "https://open.spotify.com/artist/0qfSt9N3drC7y1QG0YNeY6",
       apple: "https://music.apple.com/us/artist/bandits/1821566959",
       audiomack: "https://audiomack.com",
-      youtube: "https://youtube.com/channel/UC3wF-GxTK9jXaVy9iRVWsXw",
+      youtube: "https://www.youtube.com/watch?v=vkwYOYbDvpc",
       boomplay: "https://boomplay.com",
       lyrics: [
         "[ Rasta Bandit - Solo Single ]",
