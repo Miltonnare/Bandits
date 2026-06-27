@@ -56,6 +56,14 @@ export default function Home() {
       thumb: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='100%25' height='100%25' fill='%230F0F10'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' fill='%23C1121F' font-size='12'%3Erock na rasta%3C/text%3E%3C/svg%3E",
       url: "https://www.youtube.com/embed/WtLzPrVLimE",
     },
+    {
+      id: "v4",
+      title: "catch a body (Official Audio)",
+      category: "FINN SAVAGE",
+      duration: "02:15",
+      thumb: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='100%25' height='100%25' fill='%230F0F10'/%3E%3Ccircle cx='160' cy='90' r='25' fill='%23D4AF37' opacity='0.15'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' fill='%23C1121F' font-size='11'%3Ecatch a body%3C/text%3E%3C/svg%3E",
+      url: "https://www.youtube.com/embed/gc8pEDZ7GeU",
+    },
   ];
 
   // Gallery grid datasets
