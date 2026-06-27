@@ -281,7 +281,7 @@ export default function InteractiveGlobe() {
   }, [activeSpot]);
 
   return (
-    <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div className="w-full max-w-2xl mx-auto">
       {/* Globe Canvas Container */}
       <div className="relative w-full h-87.5 md:h-112.5 flex items-center justify-center bg-secondary-dark/40 border border-border-dark/30 rounded-none overflow-hidden group">
         <div className="absolute top-4 left-4 flex items-center space-x-2">
@@ -296,93 +296,6 @@ export default function InteractiveGlobe() {
         {/* Floating tooltip guide */}
         <div className="absolute bottom-4 left-4 text-[10px] font-mono text-muted-text/80">
           * HOVER HOTSPOTS OR DRAG TO SHIFT ROTATION
-        </div>
-      </div>
-
-      {/* Statistics readout */}
-      <div className="flex flex-col justify-center space-y-6">
-        <div className="space-y-2">
-          <span className="text-gold-primary text-xs font-mono tracking-widest uppercase">
-            Global Listening Hubs
-          </span>
-          <h3 className="font-serif italic text-3xl md:text-4xl text-white-editorial font-medium">
-            Kenya to the World.
-          </h3>
-          <p className="text-sm text-muted-text max-w-md">
-            Tracing the path of emotional soundwaves. What began as private vulnerability in Nairobi is expanding into a global resonance.
-          </p>
-        </div>
-
-        {/* Selected Hub Card */}
-        <div className="border border-border-dark/60 bg-card-dark/40 p-6 relative overflow-hidden soft-red-glow">
-          {/* Accent Glow */}
-          <div className="absolute top-0 right-0 w-24 h-24 bg-accent-red/5 rounded-full blur-2xl" />
-
-          {activeSpot && (
-            <div className="space-y-6">
-              <div className="flex justify-between items-center border-b border-border-dark/40 pb-3">
-                <div className="flex items-center space-x-2">
-                  <MapPin className="w-4.5 h-4.5 text-accent-red" />
-                  <span className="font-display font-medium text-lg tracking-wider text-white-editorial">
-                    {activeSpot.name}
-                  </span>
-                </div>
-                <span className="text-[10px] tracking-widest font-mono text-gold-primary border border-gold-primary/20 px-2 py-0.5">
-                  ACTIVE FEED
-                </span>
-              </div>
-
-              <div className="grid grid-cols-3 gap-4">
-                <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-muted-text block uppercase">
-                    Total Streams
-                  </span>
-                  <span className="font-display text-xl font-semibold text-white-editorial">
-                    {activeSpot.streams}
-                  </span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-muted-text block uppercase">
-                    Monthly Listeners
-                  </span>
-                  <div className="flex items-center space-x-1">
-                    <Users className="w-3.5 h-3.5 text-muted-text" />
-                    <span className="font-display text-xl font-semibold text-white-editorial">
-                      {activeSpot.listeners}
-                    </span>
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-muted-text block uppercase">
-                    Weekly Growth
-                  </span>
-                  <div className="flex items-center space-x-1 text-gold-primary">
-                    <TrendingUp className="w-3.5 h-3.5" />
-                    <span className="font-display text-xl font-semibold">
-                      {activeSpot.growth}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Hotspots Quick selectors */}
-        <div className="flex flex-wrap gap-3">
-          {hotspots.map((spot) => (
-            <button
-              key={spot.name}
-              onClick={() => setActiveSpot(spot)}
-              className={`px-3 py-1.5 border text-xs font-mono tracking-wider transition-all duration-300 ${
-                activeSpot?.name === spot.name
-                  ? "border-gold-primary text-gold-primary bg-gold-primary/5"
-                  : "border-border-dark/60 text-muted-text hover:border-muted-text hover:text-white-editorial"
-              }`}
-            >
-              {spot.name.split(",")[0]}
-            </button>
-          ))}
         </div>
       </div>
     </div>

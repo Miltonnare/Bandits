@@ -259,18 +259,12 @@ export default function Home() {
               ))}
             </div>
           </section>
-
           {/* SECTION 8: GLOBAL IMPACT (3D GLOBE) */}
           <section id="global-impact" className="py-24 border-y border-border-dark/20 bg-secondary-dark/10 relative">
             <div className="max-w-[90%] mx-auto">
               <InteractiveGlobe />
             </div>
           </section>
-
-
-
-
-
           {/* SECTION 12: WHY 254BANDITS */}
           <section id="why-bandits" className="py-24 bg-secondary-dark/10 relative">
             <div className="max-w-[90%] mx-auto mb-16 space-y-3">
