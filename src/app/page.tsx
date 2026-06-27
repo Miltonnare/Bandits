@@ -14,7 +14,6 @@ import BanditHero from "@/components/BanditHero";
 import BanditsCard from "@/components/BanditsCard";
 import Timeline from "@/components/Timeline";
 import Discography from "@/components/Discography";
-import MerchShowcase from "@/components/MerchShowcase";
 import BookingForm from "@/components/BookingForm";
 import InteractiveGlobe from "@/components/InteractiveGlobe";
 import AudioPlayer from "@/components/AudioPlayer";
@@ -61,8 +60,8 @@ export default function Home() {
 
   // Gallery grid datasets
   const galleryPhotos = [
-    { id: "g1", category: "STUDIO", title: "Nights in Eastlands Studio", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='100%25' height='100%25' fill='%23181818'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-style='italic' fill='%23D4AF37' font-size='12'%3ESTUDIO NOIR%3C/text%3E%3C/svg%3E" },
-    { id: "g2", category: "LIFESTREET", title: "Cyber-Dread Aesthetics", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='100%25' height='100%25' fill='%23181818'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%23F9F9F9' font-size='12'%3ESTREET NOIR%3C/text%3E%3C/svg%3E" },
+    { id: "g1", category: "STUDIO", title: "Nights in Eastlands Studio", img: "/assets/rockstar-action.jpg" },
+    { id: "g2", category: "LIFESTREET", title: "Cyber-Dread Aesthetics", img: "/assets/rasta-action.jpg" },
     { id: "g3", category: "CONCERT", title: "Nairobi Emo Fest Headliner", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect width='100%25' height='100%25' fill='%23181818'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' fill='%23C1121F' font-size='12'%3ELIVE NOISE%3C/text%3E%3C/svg%3E" },
     { id: "g4", category: "BACKSTAGE", title: "Pre-Show Rituals", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='100%25' height='100%25' fill='%23181818'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' fill='%23A5A5A5' font-size='12'%3EBACKSTAGE MEDITATION%3C/text%3E%3C/svg%3E" },
   ];
@@ -268,20 +267,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* SECTION 9: MERCHANDISE */}
-          <section id="merchandise" className="py-24 relative select-none">
-            <div className="max-w-[90%] mx-auto mb-16 space-y-3">
-              <span className="text-gold-primary text-xs font-mono tracking-widest uppercase">
-                Luxury eCommerce
-              </span>
-              <h2 className="font-serif italic text-4xl md:text-5xl text-white-editorial font-medium">
-                Bandit Gear (Edition I).
-              </h2>
-            </div>
-            <div className="max-w-[90%] mx-auto">
-              <MerchShowcase />
-            </div>
-          </section>
+
 
 
 
@@ -320,8 +306,7 @@ export default function Home() {
                   For festival billing, interviews, brand collaborations, performance inquiries, and custom audio engineering requests, secure connection coordinates using the booking form.
                 </p>
                 <div className="space-y-1 font-mono text-[10px] text-muted-text tracking-widest uppercase">
-                  <div>GENERAL INQUIRIES: booking@254bandits.com</div>
-                  <div>MANAGEMENT: agency@254bandits.com</div>
+                  <div>GENERAL INQUIRIES: rockstarbandit20@gmail.com</div>
                   <div className="text-gold-primary font-semibold">PHONE: +254 741 312 224</div>
                 </div>
               </div>
@@ -343,8 +328,9 @@ export default function Home() {
                 <p className="text-xs text-muted-text max-w-xs font-light leading-relaxed">
                   Silence has a sound. re-engineering vulnerability in East Africa through premium neo-noir storytelling.
                 </p>
-                <div className="text-[10px] font-mono text-gold-primary tracking-wider uppercase pt-2">
-                  PHONE: +254 741 312 224
+                <div className="text-[10px] font-mono text-gold-primary tracking-wider uppercase pt-2 space-y-1">
+                  <div>PHONE: +254 741 312 224</div>
+                  <div>EMAIL: rockstarbandit20@gmail.com</div>
                 </div>
               </div>
 
@@ -359,7 +345,6 @@ export default function Home() {
                   <a href="#timeline" className="hover:text-white-editorial transition-colors">THE TIMELINE</a>
                   <a href="#bandits" className="hover:text-white-editorial transition-colors">THE MEMBERS</a>
                   <a href="#discography" className="hover:text-white-editorial transition-colors">RELEASES</a>
-                  <a href="#merchandise" className="hover:text-white-editorial transition-colors">MERCH SHOP</a>
                 </div>
               </div>
 
@@ -372,7 +357,7 @@ export default function Home() {
                   <a href="https://spotify.com" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">SPOTIFY</a>
                   <a href="https://apple.com" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">APPLE MUSIC</a>
                   <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">INSTAGRAM</a>
-                  <a href="https://youtube.com" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">YOUTUBE</a>
+                  <a href="https://youtube.com/@254bandits?si=vJZCTAgV5nSwfi4Y" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">YOUTUBE</a>
                   <a href="https://discord.com" target="_blank" rel="noreferrer" className="hover:text-white-editorial transition-colors">DISCORD (COMMUNITY)</a>
                 </div>
               </div>
@@ -400,7 +385,7 @@ export default function Home() {
 
             {/* Bottom bar */}
             <div className="max-w-[90%] mx-auto mt-16 pt-8 border-t border-border-dark/30 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-mono text-muted-text/60">
-              <span>© 2026 254BANDITS / DESIGN & ARCHITECTURE BY ANTIGRAVITY</span>
+              <span>© 2026 254BANDITS / DESIGN & ARCHITECTURE BY MILTONNARE</span>
               <div className="flex space-x-6">
                 <a href="#privacy" className="hover:text-white-editorial transition-colors">PRIVACY POLICY</a>
                 <a href="#terms" className="hover:text-white-editorial transition-colors">TERMS OF SERVICE</a>

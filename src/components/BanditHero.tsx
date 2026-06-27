@@ -158,10 +158,6 @@ export default function BanditHero() {
               DISCOGRAPHY
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </button>
-            <button onClick={() => scrollToSection("merchandise")} className="text-white-editorial/80 hover:text-gold-primary hover:text-gold-glow transition-all cursor-pointer relative py-1 group">
-              SHOP
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-            </button>
             <button onClick={() => scrollToSection("booking")} className="text-gold-primary hover:text-white-editorial hover:text-glow transition-all border border-gold-primary/30 px-3 py-1 bg-gold-primary/5 hover:bg-gold-primary hover:text-background-dark cursor-pointer font-medium tracking-widest text-[9px]">
               BOOKINGS
             </button>

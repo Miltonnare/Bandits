@@ -19,7 +19,7 @@ export default function BanditsCard() {
   const bandits: Bandit[] = [
     {
       name: "ROCKSTAR BANDIT",
-      avatar: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23C1121F' stop-opacity='0.25'/%3E%3Cstop offset='100%25' stop-color='%23050505'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g1)'/%3E%3Ccircle cx='150' cy='200' r='80' fill='none' stroke='%23D4AF37' stroke-width='1.5' stroke-dasharray='4,8'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-style='italic' fill='%23D4AF37' font-size='22'%3EROCKSTAR%3C/text%3E%3C/svg%3E",
+      avatar: "/assets/rockstar-bomber.jpg",
       role: "Producer / Creative Director / Strategist",
       quote: `"Silence is the canvas. Sound is the paint."`,
       song: "Silence Has a Sound",
@@ -30,7 +30,7 @@ export default function BanditsCard() {
     },
     {
       name: "RASTA BANDIT",
-      avatar: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23D4AF37' stop-opacity='0.2'/%3E%3Cstop offset='100%25' stop-color='%23050505'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g2)'/%3E%3Ccircle cx='150' cy='200' r='80' fill='none' stroke='%23C1121F' stroke-width='1.5' stroke-dasharray='4,8'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-style='italic' fill='%23C1121F' font-size='22'%3ERASTA%3C/text%3E%3C/svg%3E",
+      avatar: "/assets/rasta-profile.jpg",
       role: "Lyricist / Vocalist / Emotional Voice",
       quote: `"We speak for the ones who have forgotten how to scream."`,
       song: "Rockstar Chronicles",
@@ -102,6 +102,16 @@ export default function BanditsCard() {
             <span className="text-[9px] font-mono text-muted-text border border-border-dark px-2 py-0.5 uppercase">
               {bandit.name.split(" ")[0]}
             </span>
+          </div>
+
+          {/* Editorial Portrait */}
+          <div className="w-full h-56 bg-surface-dark border border-border-dark/60 overflow-hidden relative group-hover:border-gold-primary/30 transition-colors">
+            <img
+              src={bandit.avatar}
+              alt={bandit.name}
+              className="w-full h-full object-cover grayscale contrast-[1.1] brightness-[0.8] group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-secondary-dark via-transparent to-transparent opacity-80" />
           </div>
 
           {/* Member Name */}
