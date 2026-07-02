@@ -300,7 +300,15 @@ export default function Home() {
                   For festival billing, interviews, brand collaborations, performance inquiries, and custom audio engineering requests, secure connection coordinates using the booking form.
                 </p>
                 <div className="space-y-1 font-mono text-[10px] text-muted-text tracking-widest uppercase">
-                  <div>GENERAL INQUIRIES: rockstarbandit20@gmail.com</div>
+                  <div>
+                    GENERAL INQUIRIES:{" "}
+                    <a
+                      href="mailto:rockstarbandit20@gmail.com"
+                      className="hover:text-gold-primary transition-colors text-white-editorial cursor-pointer"
+                    >
+                      rockstarbandit20@gmail.com
+                    </a>
+                  </div>
                   <div className="text-gold-primary font-semibold">PHONE: +254 741423757</div>
                 </div>
               </div>
@@ -324,7 +332,15 @@ export default function Home() {
                 </p>
                 <div className="text-[10px] font-mono text-gold-primary tracking-wider uppercase pt-2 space-y-1">
                   <div>PHONE: +254 741423757</div>
-                  <div>EMAIL: rockstarbandit20@gmail.com</div>
+                  <div>
+                    EMAIL:{" "}
+                    <a
+                      href="mailto:rockstarbandit20@gmail.com"
+                      className="hover:text-white-editorial transition-colors text-gold-primary cursor-pointer"
+                    >
+                      rockstarbandit20@gmail.com
+                    </a>
+                  </div>
                 </div>
               </div>
 
