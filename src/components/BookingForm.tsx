@@ -62,8 +62,19 @@ export default function BookingForm() {
 
     setIsSubmitting(true);
 
+    // Trigger local email client mailto link with form details
+    const mailtoUrl = `mailto:rockstarbandit20@gmail.com?subject=254Bandits Booking: ${encodeURIComponent(formData.type)}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nOrganization: ${formData.org || "N/A"}\n\nMessage:\n${formData.message}`
+    )}`;
+
+    const a = document.createElement("a");
+    a.href = mailtoUrl;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
     // Simulate server response delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     setIsSubmitting(false);
     setIsSuccess(true);
